@@ -11,7 +11,7 @@ namespace KostkaStats
     {
         public event Action Invalidate;
         private SolidBrush barvaTecky = new SolidBrush(Color.Red);
-        private int velikostTecky = 30;
+        private int velikostTecky = 60;
 
         private int midX, midY;
 
@@ -30,9 +30,45 @@ namespace KostkaStats
         }
 
         public void VykresliSe(Graphics g) {
-            if(Cislo % 2 == 1 || true)  {
+            if(Cislo % 2 == 1)  {
                 g.FillEllipse(barvaTecky,
                     midX - velikostTecky / 2,
+                    midY - velikostTecky / 2,
+                    velikostTecky,
+                    velikostTecky);
+            }
+            if(Cislo >= 2) {
+                g.FillEllipse(barvaTecky,
+                    midX - velikostTecky / 2 - midX/2,
+                    midY - velikostTecky / 2 - midY/2,
+                    velikostTecky,
+                    velikostTecky);
+                g.FillEllipse(barvaTecky,
+                    midX - velikostTecky / 2 + midX/2,
+                    midY - velikostTecky / 2 + midY/2,
+                    velikostTecky,
+                    velikostTecky);
+            } 
+            if(Cislo >= 4) {
+                g.FillEllipse(barvaTecky,
+                    midX - velikostTecky / 2 + midX / 2,
+                    midY - velikostTecky / 2 - midY / 2,
+                    velikostTecky,
+                    velikostTecky);
+                g.FillEllipse(barvaTecky,
+                    midX - velikostTecky / 2 - midX / 2,
+                    midY - velikostTecky / 2 + midY / 2,
+                    velikostTecky,
+                    velikostTecky);
+            }
+            if(Cislo == 6) {
+                g.FillEllipse(barvaTecky,
+                    midX - velikostTecky / 2 - midX / 2,
+                    midY - velikostTecky / 2,
+                    velikostTecky,
+                    velikostTecky);
+                g.FillEllipse(barvaTecky,
+                    midX - velikostTecky / 2 + midX / 2,
                     midY - velikostTecky / 2,
                     velikostTecky,
                     velikostTecky);
