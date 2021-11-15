@@ -72,6 +72,7 @@ namespace KostkaStats
             this.button3.TabIndex = 3;
             this.button3.Text = "Statistiky >>";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
@@ -86,6 +87,7 @@ namespace KostkaStats
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Kostka";
+            this.LocationChanged += new System.EventHandler(this.Form1_LocationChanged);
             this.ResumeLayout(false);
 
         }

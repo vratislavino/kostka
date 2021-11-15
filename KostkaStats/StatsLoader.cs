@@ -13,12 +13,15 @@ namespace KostkaStats
         static StatsLoader instance = null;
         private StatsLoader() { }
 
-        GlobalData globalData;
-        CurrentData currentData;
+        static GlobalData globalData;
+        public static GlobalData GlobalData => globalData;
+        static CurrentData currentData;
+        public static CurrentData CurrentData => currentData;
 
-        public static StatsLoader Create() {
+        public static StatsLoader Create(Form1 f) {
             if(instance == null) {
                 instance = new StatsLoader();
+                f.KostkaVrzena += ProcessNewNumber;
                 instance.LoadStats();
             }
             return instance;
@@ -54,12 +57,21 @@ namespace KostkaStats
             return new int[] { 0, 0, 0, 0, 0, 0 };
         }
 
-        public void ProcessNewNumber(int cislo) {
+        public static void ProcessNewNumber(int cislo) {
             currentData.data[cislo - 1]++;
             globalData.data[cislo - 1]++;
 
             currentData.SetDirty();
             globalData.SetDirty();
+
+            SaveData();
+        }
+
+        private static void SaveData() {
+            /*if(!File.Exists("data.txt")) {
+                File.Create("data.txt");
+            }*/
+            File.WriteAllLines("data.txt", globalData.data.Select(x=>x.ToString()));
         }
 
     }
